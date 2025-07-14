@@ -5,6 +5,7 @@ import java.util.Set;
 
 public interface Constants {
 
+    public static final String OIDCUSER = "oidcUser";
     public static final String ADDRESSES = "addresses";
     public static final String USERID = "userId";
     public static final String LIST_ADDRESS = "list-address";
@@ -31,7 +32,8 @@ public interface Constants {
     public static final String NAME = "name";
     public static final String ADMIN = "ADMIN";
     public static final String PROFILES = "profiles";
-    public static final List<String> PROFILES_LIST = List.of("ADMIN", "USER");
+    public static final String ROLES = "roles";
+    public static final List<String> ROLES_LIS = List.of("ADMIN", "USER");
     public static final String INVALID_LOGIN = "invalid.login";
     public static final String USER = "user";
     public static final String USERS = "users";
@@ -44,4 +46,9 @@ public interface Constants {
     public static final String APP_NAME = "app-name";
     public static final String REGISTER_MAMANER_FRONTEND = "register-mamaner-frontend";
     public static final Set<String> HEADERS_TO_REMOVE = Set.of("host", "content-length", "content-type", "accept");
+    public static final String SCOPES_LABEL = "scopes_label";
+    public static final Set<String> SCOPES_LIST = Set.of("client.write", "client.read", "client.update", "client.delete",
+            "user.write", "user.read", "user.update", "user.delete", "openid", "profile", "email", "address", "phone");
+    public static final String COULD_NOT_UPDATE_RESOURCE = "Could not update resource ";
+    public static final String COULD_NOT_DELETE_RESOURCE = "Could not delete resource ";
 }

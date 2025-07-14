@@ -1,0 +1,19 @@
+<div th:fragment="profile" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="profile-header" onclick="toggleProfileDetails()">
+        <div class="profile-avatar" id="profileAvatar">JD</div>
+        <div class="profile-name" id="profileName" th:text="${oidcUser.subject}"></div>
+    </div>
+    <div class="profile-details" id="profileDetails">
+        <div>
+            <p><strong>Email:</strong><p th:text="${oidcUser.subject}"></p></p>
+            <p><strong>Perfil:</strong><p th:text="${oidcUser.name}"></p></p>
+            <p>
+                <a class="btn btn-primary" th:href="@{/users(page=0, linesPerPage=24, orderBy=name, direction=ASC)}">Usuários</a>
+            </p>
+            <p>
+                <a class="btn btn-primary" th:href="@{/clients(page=0, linesPerPage=24, orderBy=name, direction=ASC)}">Clientes</a>
+            </p>
+            <p><a class="btn btn-primary" th:href="@{/login}">Sair</a></p>
+        </div>
+    </div>
+</div>

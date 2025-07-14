@@ -25,9 +25,16 @@ logging:
   file:
     name: register-manager-frontend-client.log
   level:
-    root: warn
+    root: debug
     #org.springframework.web: debug
     #org.springframework.security: debug
     #org.springframework.security.oauth2: debug
     #org.springframework.boot.autoconfigure: debug
 #Trace, debug, info, warn, error
+
+app:
+  registermanagerresource:
+    url: http://localhost:9080
+    user:
+      resource: /api/v1/users
+      resourceid: /api/v1/users/{ID}

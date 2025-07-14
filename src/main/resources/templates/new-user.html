@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{frag-header :: common_header('Home', true)}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Cadastrar Usuário</h1>
+            <form th:action="@{/save-user}" method="post">
+                <div class="field">
+                    <p class="error-message" th:if="${name}" th:text="${name}"></p>
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" th:value="${user.name}" required min="10" maxlength="100" placeholder="Digite seu nome">
+                </div>
+                <div class="field">
+                    <p class="error-message" th:if="${email}" th:text="${email}"></p>
+                    <p class="error-message" th:if="${userEmailConflit}" th:text="${userEmailConflit}"></p>
+                    <label for="email">E-Mail:</label>
+                    <input type="text" id="email" name="email" th:value="${user.email}" required minlength="4" maxlength="100" placeholder="Digite seu email">
+                </div>
+                <div class="field">
+                    <p class="error-message" th:if="${password}" th:text="${password}"></p>
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" th:value="${user.password}" required minlength="8" maxlength="20" placeholder="Digite sua senha">
+                </div>
+                <div class="field field-select">
+                    <p class="error-message" th:if="${role}" th:text="${role}"></p>
+                    <label for="role">Role:</label>
+                    <select id="role" name="role" required>
+                        <option value="" disabled>Escolha uma opção</option>
+                        <option th:each="role : ${roles}"
+                                th:value="${role}"
+                                th:text="${role}">
+                        </option>
+                    </select>
+                </div>
+                <div class="field field-select">
+                    <p class="error-message" th:if="${scopes}" th:text="${scopes}"></p>
+                    <label for="scopes">Scopes:</label>
+                    <select id="scopes" name="scopes" required multiple="multiple">
+                        <option value="" disabled>Escolha uma opção</option>
+                        <option th:each="s : ${scopes_label}"
+                                th:value="${s}"
+                                th:text="${s}">
+                        </option>
+                    </select>
+                </div>
+                <div><br><br>
+                    <a class="btn btn-primary" th:href="@{/users(page=0, linesPerPage=24, orderBy=name, direction=ASC)}">Voltar</a>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

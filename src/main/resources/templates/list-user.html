@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+    <head th:insert="~{frag-header :: common_header('Home', false)}">
+    </head>
+    <body>
+        <div th:insert="~{frag-profile-details :: profile}">
+        </div>
+        <p>
+            <a class="btn btn-primary" th:href="@{/new-user}">Cadastrar novo usuário</a>
+        </p>
+        <h1>Lista de Usuários</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th class="sortable">
+                        Nome
+                        <span class="sort-icons">
+                            <span class="sort-icon" title="Ordenar Ascendente">
+                                <a th:href="@{/users(page=${users.firstPageNumber}, linesPerPage=${users.size}, orderBy=name, direction=ASC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 7l-5 5h10z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="sort-icon" title="Ordenar Descendente">
+                                <a th:href="@{/users(page=${users.firstPageNumber}, linesPerPage=${users.size}, orderBy=name, direction=DESC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 17l5-5H7z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                        </span>
+                    </th>
+                    <th>
+                        E-Mail
+                        <span class="sort-icons">
+                            <span class="sort-icon" title="Ordenar Ascendente">
+                                <a th:href="@{/users(page=${users.firstPageNumber}, linesPerPage=${users.size}, orderBy=email, direction=ASC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 7l-5 5h10z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="sort-icon" title="Ordenar Descendente">
+                                <a th:href="@{/users(page=${users.firstPageNumber}, linesPerPage=${users.size}, orderBy=email, direction=DESC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 17l5-5H7z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                        </span>
+                    </th>
+                    <th>
+                        Data
+                        <span class="sort-icons">
+                            <span class="sort-icon" title="Ordenar Ascendente">
+                                <a th:href="@{/users(page=${users.firstPageNumber}, linesPerPage=${users.size}, orderBy=createdDate, direction=ASC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 7l-5 5h10z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="sort-icon" title="Ordenar Descendente">
+                                <a th:href="@{/users(page=${users.firstPageNumber}, linesPerPage=${users.size}, orderBy=createdDate, direction=DESC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 17l5-5H7z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                        </span>
+                    </th>
+                    <th>
+                        Data atualização
+                        <span class="sort-icons">
+                            <span class="sort-icon" title="Ordenar Ascendente">
+                                <a th:href="@{/users(page=${users.firstPageNumber}, linesPerPage=${users.size}, orderBy=lastModifiedDate, direction=ASC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 7l-5 5h10z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="sort-icon" title="Ordenar Descendente">
+                                <a th:href="@{/users(page=${users.firstPageNumber}, linesPerPage=${users.size}, orderBy=lastModifiedDate, direction=DESC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 17l5-5H7z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                        </span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users.content}">
+                        <td>
+                            <a th:href="@{/edit-user/{id}(id=${user.id})}">
+                                <span th:text="${user.name}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/edit-user/{id}(id=${user.id})}">
+                                <span th:text="${user.email}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/edit-user/{id}(id=${user.id})}">
+                                <span th:text="${user.createdDate}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/edit-user/{id}(id=${user.id})}">
+                                <span th:text="${user.lastModifiedDate}"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:object="${users}" th:if="${users.totalPages > 1}" class="pagination">
+            <a th:href="@{/users(page=${users.firstPageNumber}, linesPerPage=${users.size}, orderBy=${users.orderBy}, direction=${users.direction})}">Primeiro</a>
+            <a th:href="@{/users(page=${users.nextPageNumber}, linesPerPage=${users.size}, orderBy=${users.orderBy}, direction=${users.direction})}">Próximo</a>
+            <a th:href="@{/users(page=${users.previousPageNumber}, linesPerPage=${users.size}, orderBy=${users.orderBy}, direction=${users.direction})}">Anteior</a>
+            <a th:href="@{/users(page=${users.lastPageNumber}, linesPerPage=${users.size}, orderBy=${users.orderBy}, direction=${users.direction})}">Último</a>
+        </div>
+    </body>
+</html>
