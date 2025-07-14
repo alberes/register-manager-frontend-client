@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+    <head th:insert="~{frag-header :: common_header('Home', false)}">
+    </head>
+    <body>
+        <div th:insert="~{frag-profile-details :: profile}">
+        </div>
+        <p>
+            <a class="btn btn-primary" th:href="@{/new-client}">Cadastrar novo cliente</a>
+        </p>
+        <h1>Lista de Clientes</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th class="sortable">
+                        Client Id
+                        <span class="sort-icons">
+                            <span class="sort-icon" title="Ordenar Ascendente">
+                                <a th:href="@{/clients(page=${clients.firstPageNumber}, linesPerPage=${clients.size}, orderBy=clientId, direction=ASC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 7l-5 5h10z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="sort-icon" title="Ordenar Descendente">
+                                <a th:href="@{/clients(page=${clients.firstPageNumber}, linesPerPage=${clients.size}, orderBy=clientId, direction=DESC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 17l5-5H7z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                        </span>
+                    </th>
+                    <th>
+                        Redirect URI
+                        <span class="sort-icons">
+                            <span class="sort-icon" title="Ordenar Ascendente">
+                                <a th:href="@{/clients(page=${clients.firstPageNumber}, linesPerPage=${clients.size}, orderBy=redirectURI, direction=ASC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 7l-5 5h10z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="sort-icon" title="Ordenar Descendente">
+                                <a th:href="@{/clients(page=${clients.firstPageNumber}, linesPerPage=${clients.size}, orderBy=redirectURI, direction=DESC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 17l5-5H7z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                        </span>
+                    </th>
+                    <th>
+                        Data
+                        <span class="sort-icons">
+                            <span class="sort-icon" title="Ordenar Ascendente">
+                                <a th:href="@{/clients(clients=${clients.firstPageNumber}, linesPerPage=${clients.size}, orderBy=createdDate, direction=ASC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 7l-5 5h10z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="sort-icon" title="Ordenar Descendente">
+                                <a th:href="@{/clients(page=${clients.firstPageNumber}, linesPerPage=${clients.size}, orderBy=createdDate, direction=DESC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 17l5-5H7z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                        </span>
+                    </th>
+                    <th>
+                        Data atualização
+                        <span class="sort-icons">
+                            <span class="sort-icon" title="Ordenar Ascendente">
+                                <a th:href="@{/clients(page=${clients.firstPageNumber}, linesPerPage=${clients.size}, orderBy=lastModifiedDate, direction=ASC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 7l-5 5h10z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="sort-icon" title="Ordenar Descendente">
+                                <a th:href="@{/clients(page=${clients.firstPageNumber}, linesPerPage=${clients.size}, orderBy=lastModifiedDate, direction=DESC)}">
+                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                        <path d="M12 17l5-5H7z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                        </span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="client : ${clients.content}">
+                        <td>
+                            <a th:href="@{/edit-client/{clientId}(clientId=${client.clientId})}">
+                                <span th:text="${client.clientId}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/edit-client/{clientId}(clientId=${client.clientId})}">
+                                <span th:text="${client.redirectURI}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/edit-client/{clientId}(id=${client.clientId})}">
+                                <span th:text="${client.createdDate}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/edit-client/{clientId}(clientId=${client.clientId})}">
+                                <span th:text="${client.lastModifiedDate}"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:object="${clients}" th:if="${clients.totalPages > 1}" class="pagination">
+            <a th:href="@{/clients(page=${clients.firstPageNumber}, linesPerPage=${clients.size}, orderBy=${clients.orderBy}, direction=${clients.direction})}">Primeiro</a>
+            <a th:href="@{/clients(page=${clients.nextPageNumber}, linesPerPage=${clients.size}, orderBy=${clients.orderBy}, direction=${clients.direction})}">Próximo</a>
+            <a th:href="@{/clients(page=${clients.previousPageNumber}, linesPerPage=${clients.size}, orderBy=${clients.orderBy}, direction=${clients.direction})}">Anteior</a>
+            <a th:href="@{/clients(page=${clients.lastPageNumber}, linesPerPage=${clients.size}, orderBy=${clients.orderBy}, direction=${clients.direction})}">Último</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{frag-header :: common_header('Home', true)}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Editar Client</h1>
+            <div>
+                <p class="success-message" th:if="${message}" th:text="${message}"></p>
+                <p class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+            </div>
+            <form th:action="@{/update-client/{clientId}(clientId=${client.clientId})}" method="post">
+                <div>
+                    <label for="redirectURI">URI:</label>
+                    <p class="error-message" th:if="${redirectURI}" th:text="${redirectURI}"></p>
+                    <input type="text" id="redirectURI" name="redirectURI" th:value="${client.redirectURI}" required minlength="10" maxlength="500">
+                </div>
+                <div><br><br>
+                    <a class="btn btn-primary" th:href="@{/clients(page=0, linesPerPage=24, orderBy=clientId, direction=ASC)}">Voltar</a>
+                    <a class="btn btn-secondary" th:href="@{/delete-client/{clientId}(clientId=${client.clientId})}">Excluir</a>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -38,6 +38,13 @@ public interface Constants {
     public static final String USER = "user";
     public static final String USERS = "users";
     public static final String NEW_USER = "new-user";
+    public static final String CLIENT = "client";
+    public static final String NEW_CLIENT = "new-client";
+    public static final String EDIT_CLIENT = "edit-client";
+    public static final String CLIENT_ID = "clientId";
+    public static final String CLIENTS = "clients";
+    public static final String LIST_CLIENT = "list-client";
+    public static final String REGISTRATION_WITH_E_CLIENT_ID = "registrationWithClientId";
     public static final String ADDRESS_NOT_FIND = "address.not.find";
     public static final String LIST_USER = "list-user";
     public static final String EDIT_USER = "edit-user";

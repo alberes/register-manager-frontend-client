@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{frag-header :: common_header('Home', true)}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Cadastrar Cliente</h1>
+            <form th:action="@{/save-client}" method="post">
+                <div class="field">
+                    <p class="error-message" th:if="${clientId}" th:text="${clientId}"></p>
+                    <label for="clientId">Client Id:</label>
+                    <input type="text" id="clientId" name="clientId" th:value="${client.clientId}" required min="10" maxlength="100" placeholder="Digite seu client id">
+                </div>
+                <div class="field">
+                    <p class="error-message" th:if="${clientSecret}" th:text="${clientSecret}"></p>
+                    <p class="error-message" th:if="${registrationWithClientId}" th:text="${registrationWithClientId}"></p>
+                    <label for="clientSecret">Secret:</label>
+                    <input type="password" id="clientSecret" name="clientSecret" th:value="${client.clientSecret}" required minlength="10" maxlength="100" placeholder="Digite seu Client Secret">
+                </div>
+                <div class="field">
+                    <p class="error-message" th:if="${redirectURI}" th:text="${redirectURI}"></p>
+                    <label for="redirectURI">URI:</label>
+                    <input type="text" id="redirectURI" name="redirectURI" th:value="${client.redirectURI}" required minlength="10" maxlength="500" placeholder="Digite A URL">
+                </div>
+                <div class="field field-select">
+                    <p class="error-message" th:if="${scope}" th:text="${scope}"></p>
+                    <label for="scope">Role:</label>
+                    <select id="scope" name="scope" required>
+                        <option value="" disabled>Escolha uma opção</option>
+                        <option th:each="role : ${roles}"
+                                th:value="${role}"
+                                th:text="${role}">
+                        </option>
+                    </select>
+                </div>
+                <div><br><br>
+                    <a class="btn btn-primary" th:href="@{/clients(page=0, linesPerPage=24, orderBy=name, direction=ASC)}">Voltar</a>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
