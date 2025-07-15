@@ -1,0 +1,41 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          register-manager-frontend-client-oidc:
+            provider: spring
+            client-id: ${ADMIN_CLIENT_ID:admin-client-id}
+            client-secret: ${ADMIN_CLIENT_SECRET:admin-client-secret}
+            authorization-grant-type: ${AUTHORIZATION_CODE:authorization_code}
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: ${SCOPE:openid, profile, email, address, phone}
+            client-name: ${CLIENT_NAME:register-manager-frontend-client-oidc}
+        provider:
+          spring:
+            issuer-uri: ${ISSUER_URI:http://localhost:9090}
+            #authorization-uri: http://localhost:9090/oauth2/authorize
+            #token-uri: http://localhost:9090/oauth2/token
+            #user-info-uri: http://localhost:9090/userinfo
+            #user-name-attribute: sub
+
+logging:
+  file:
+    name: ${LOG_NAME:register-manager-frontend-client.log}
+  level:
+    root: ${LOG_LEVEL:warn}
+    #org.springframework.web: debug
+    #org.springframework.security: debug
+    #org.springframework.security.oauth2: debug
+    #org.springframework.boot.autoconfigure: debug
+#Trace, debug, info, warn, error
+
+app:
+  registermanagerresource:
+    url: ${REGISTER_MANAGER_RESOURCE_URL:http://localhost:9080}
+    user:
+      resource: /api/v1/users
+      resourceid: /api/v1/users/{ID}
+    client:
+      resource: /api/v1/clients
+      resourceid: /api/v1/clients/{CLIENT_ID}

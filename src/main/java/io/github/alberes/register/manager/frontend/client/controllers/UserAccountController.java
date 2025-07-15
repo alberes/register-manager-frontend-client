@@ -33,7 +33,7 @@ public class UserAccountController extends GenericController{
     public String index(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client,
                               @AuthenticationPrincipal OidcUser oidcUser, Model model){
         model.addAttribute(Constants.OIDCUSER, oidcUser);
-        return "home";
+        return Constants.HOME;
     }
 
     @GetMapping("/users")
