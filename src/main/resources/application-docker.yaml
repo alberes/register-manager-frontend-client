@@ -13,7 +13,7 @@ spring:
             client-name: ${CLIENT_NAME:register-manager-frontend-client-oidc}
         provider:
           spring:
-            issuer-uri: ${ISSUER_URI:http://localhost:9090}
+            issuer-uri: ${ISSUER_URI:http://register-manager-authorization-server:9090}
             #authorization-uri: http://localhost:9090/oauth2/authorize
             #token-uri: http://localhost:9090/oauth2/token
             #user-info-uri: http://localhost:9090/userinfo
@@ -32,7 +32,7 @@ logging:
 
 app:
   registermanagerresource:
-    url: ${REGISTER_MANAGER_RESOURCE_URL:http://localhost:9080}
+    url: ${REGISTER_MANAGER_RESOURCE_URL:http://register-manager-resource-server:9080}
     user:
       resource: /api/v1/users
       resourceid: /api/v1/users/{ID}
