@@ -14,9 +14,9 @@ spring:
         provider:
           spring:
             issuer-uri: ${ISSUER_URI:http://register-manager-authorization-server:9090}
-            #authorization-uri: http://localhost:9090/oauth2/authorize
-            #token-uri: http://localhost:9090/oauth2/token
-            #user-info-uri: http://localhost:9090/userinfo
+            #authorization-uri: http://register-manager-authorization-server:9090/oauth2/authorize
+            #token-uri: http://register-manager-authorization-server:9090/oauth2/token
+            #user-info-uri: http://register-manager-authorization-server:9090/userinfo
             #user-name-attribute: sub
 
 logging:
