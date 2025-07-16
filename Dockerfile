@@ -20,9 +20,9 @@ ENV ADMIN_CLIENT_SECRET='admin-client-secret'
 ENV AUTHORIZATION_CODE='authorization_code'
 ENV SCOPE='openid, profile, email, address, phone'
 ENV CLIENT_NAME='register-manager-frontend-client-oidc'
-ENV ISSUER_URI='http://localhost:9090'
+ENV ISSUER_URI='http://register-manager-authorization-server:9090'
 ENV LOG_NAME='register-manager-frontend-client.log'
 ENV LOG_LEVEL='warn'
-ENV REGISTER_MANAGER_RESOURCE_URL='http://localhost:9080'
+ENV REGISTER_MANAGER_RESOURCE_URL='http://register-manager-resource-server:9080'
 
 ENTRYPOINT java -jar register-manager-frontend-client.jar

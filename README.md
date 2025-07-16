@@ -63,7 +63,12 @@ A aplicação subirá na porta 8080
 1. Sistema:
     Acessar a URL http://127.0.0.1:8080/home
 
-1. Montando um ambiente Docker (alterar a variável de ambiente active para docker no arquivo application.yaml)
+1. Montando um ambiente Docker
+- Alterar a variável de ambiente active para docker no arquivo application.yaml
+- Caso seja executado na máquina local editar o arquivo host para redirecional para o nome do serviço
+```
+host para 127.0.0.1 register-manager-authorization-server
+```
    <a id="criar-register-manager-frontend-client"></a>
 - Criando uma imagem da aplicação
 ```
